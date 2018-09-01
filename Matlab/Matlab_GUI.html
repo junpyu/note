@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<title>Matlab笔记</title>
+<script src="./jquery.min.js"></script>
+
+<style>
+    #content{padding-right:102px;}
+    .menu{width:280px; background:#fff; border:1px #32c6c6 solid; border-radius:4px; position:fixed; right:0; padding:0 6px;}
+    .menu a{width:100%; height:30px; line-height:30px; display:inline-block;}
+    .codesty{word-wrap: break-word;
+            white-space: pre-wrap;
+             white-space: -moz-pre-wrap;}
+    .mcode{background-color:rgb(40,44,52);
+            border: 1px solid #000;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding:20px;
+            font-size:18px;
+            color:white;}
+    .remarks{
+            color:rgb(103,216,209);
+    }
+</style>
+<script>
+$(document).ready(function(e) {
+    $("#content").children().each(function(index, element) {
+        var tagName=$(this).get(0).tagName;
+        if(tagName.substr(0,1).toUpperCase()=="H"){  
+            var contentH=$(this).html();//获取内容
+            var markid="mark-"+tagName+"-"+index.toString();
+            $(this).attr("id",markid);//为当前h标签设置id
+            $(".menu").append("<a href='#"+markid+"'>"+contentH+"</a>");//在目标DIV中添加内容   
+        }  
+    });
+});
+</script>
+</head>
+
+<body>
+<div class="menu"></div>
+<div id="content">
+<h1>Matlab GUI 笔记</h1>
+<div>创建时间：2018-8-28 最后修改时间：<script type="text/javascript">var now=new Date();document.write(now);</script></div>
+<hr />
+<h2>摘要</h2>
+<div>
+Matlab GUI 的一些小知识的
+</div>
+<h3>Matlab GUI 开始</h3>
+<div>
+<a href="https://blog.csdn.net/zldz14/article/details/82146724">关于从无到有建立一个Matlab GUI 历程</a>
+</div>
+<h3>matlab中按键相应函数</h3>
+<div class="mcode">
+<pre class="codesty" ><code>
+    function pushbutton1_Callback(hObject, eventdata, handles) 
+    % hObject    handle to pushbutton1 (see GCBO)
+    % eventdata  reserved - to be defined in a future version of MATLAB
+    % handles    structure with handles and user data (see GUIDATA)
+    set(hObject,'string','测试');
+    set(handles.text4,'string','edit');
+</code></pre>
+</div>
+<h3>matlab中在一个窗口打开另一个窗口</h3>
+<div class="mcode">
+<pre class="codesty" ><code>
+    h=gcf;  %获取当前页面句柄
+    tt;     %打开tt.fig
+    ha = guihandles;%guihandles %获取新打开的窗口的句柄
+    set(ha.text2,'string','ttt')
+    close(h);   %关闭上一个窗口
+</code></pre>
+</div>
+<h3>matlab中对控件隐藏或显示</h3>
+<div class="mcode">
+<pre class="codesty" ><code>
+    ch = guihandles;%guihandles
+    set(ch.Signalparameters,'Visible','on')
+    set(ch.Signalmode,'Visible','off')
+    set(ch.Workingmode,'Visible','off')
+    set(ch.Taskmode,'Visible','off')
+<div class="remarks">备注：</div>
+</code></pre>
+</div>
+</body>
+</html>
